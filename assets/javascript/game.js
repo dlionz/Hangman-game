@@ -1,55 +1,109 @@
-// need to create an array with words in it
-var words = ["Jedi", "Staw wars", "Luke", "Han Solo", "Empire"];
+//words arry
+var words = ["Jedi", "StawWars", "Luke", "HanSolo", "Empire"];
+//stores letters geussed
+var letterGeussed =[];
+//counter for guess
+var guessCounter = 10;
+//win counter
+var win = 0;
+//word to guess
+var wordToGuess = words[Math.floor(Math.random()*words.length)];
+//split random word
+var wordSplit = wordToGuess.split("");
 
-//choose a random word for the user to geuss
-// var wordToGeuss = words[Math.floor(Math.random()*words.length)];
+//danny
+wordToGuess = wordToGuess.split("");
 
-//  var wordGeuss = document.getElementById("word");
-//  	wordGuess.innerHTML = wordToGuess;
-var wordGuess = document.getElementById("word");
-	wordGuess.innerHTML = words[Math.floor(Math.random()*words.length)];
+//writting to html for Wins, Word, LetterGeuss
 
-
-
-// so its like var wordGuess = document.getElementById("word");
-
-// [8:13] 
-// with word being the id you gave the div earlier
-
-// [8:14] 
-// then do wordGuess.innerHTML = wordToGuess
-
-// [8:14] 
-// wordToGuess = the random word selected in your code
+document.getElementById("wins").innerHTML = win;
+document.getElementById("geussLeft").innerHTML = guessCounter;
 
 
+//creates arrry for random word
+for(var i = 0; i < wordSplit.length; i++){
+	wordSplit[i] = "_ ";
+	document.getElementById("word").innerHTML = wordSplit.join("");
+}
+
+
+//pressed key function and into the abyss
+document.onkeyup = function(event){
+ 	
+ 	if(letterGeussed.length === 0){
+ 		console.log("run")
+ 		letterGeussed.push(event.key);
+ 	}
+		//forloop to compare users geuss to letters already geussed
+		 //loop through each letter in letterGeussed
+		 // //if ANY of the letters match, log already
+		 // //else, push the new letter into the array
+		 	for(var k = 0; k < letterGeussed.length; k++){
+		 		if(letterGeussed.includes(event.key)){
+		 		}	
+		 		else{
+		 			letterGeussed.push(event.key);
+		 			console.log(letterGeussed);
+		 			document.getElementById("guess").innerHTML = letterGeussed;
+		 		}
+		 		
+		 	}
+		 			 		// for loop to check wordToGuess and Letterguessed	
+			 for(var j = 0; j < letterGeussed.length; j++){
+				for(var h =0; h < wordSplit.length; h++){
+		 			if(letterGeussed[j] === wordSplit[h]){
+		 				wordSplit[h] = letterGeussed[j];
+			 				console.log(wordSplit);
+			 			}
+			 			else{
+			 				guessCounter--;
+			 			}
+			 		}
+			 	}
+
+			//dannys loop
+			var showWord = "";
+			for(var i = 0; i<wordToGuess.length;i++){
+				
+				if(letterGeussed.indexOf(wordToGuess[i].toLowerCase()) >=0){
+					showWord = showWord + wordToGuess[i] + " ";
+					console.log("position of letter: ", letterGeussed.indexOf(wordToGuess[i]));
+				}
+				else {
+					showWord = showWord + "_ ";
+				}
+				
+			}
+			 document.getElementById("word").innerHTML = showWord;
+
+
+		//check for a win 	
+ }
+
+
+//clear my stats 
+function clearStats(){
+	var wordToGuess = words[Math.floor(Math.random()*words.length)];
+	var guessCounter = 10;
+	var letterGeussed =[];
+}
+ 
+//Win Function
+function youWin(){
+	alert("WHOOOOOOOOOO! You got'em!");
+	clearStats();
+	win++;
+}
+
+//Loose Function
+function youLoose(){
+	alert("Beware the darkside!");
+	clearStats();
+}
 
 
 
-//need a function that converts the array into underscores
-	//needs to loop through each word (Letter in the word) and write out the underscore when that loop is done
 
-
-// //pressed key function to get the geuss
-
-//  var letterGeussed[];
-
-//  document.onkeyup = function(event){
-//  	letterGeussed = event.key;
-//  	letterGeussed.push();
-//  }
-
-
-// //need a function that will show correcly geussed letter
-// 	//if statment where if lettergeussed[i] === words[i] then show letter 
-
-
-// //need a fuction that creates and array of wrongly geussed letters 
-// var badGeuss[];
-
-// document.write(badGeuss);
-
-// //need a win counter
 
 
 
